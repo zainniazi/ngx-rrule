@@ -1,6 +1,6 @@
 {
-  "name": "ngx-rrule",
-  "version": "0.0.10",
+  "name": "@servicebull/ngx-rrule",
+  "version": "0.0.13",
   "repository": {
     "type": "git",
     "url": "https://github.com/kumar-muthu/ngx-rrule.git"
