@@ -14,6 +14,9 @@ export class MonthlyComponent implements OnInit, ControlValueAccessor {
   public form: FormGroup;
   private propagateChange;
 
+  name: any;
+  disabled = true;
+
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {

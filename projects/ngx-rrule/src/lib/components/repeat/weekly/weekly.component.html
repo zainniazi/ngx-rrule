@@ -1,7 +1,8 @@
-<form [formGroup]="weeklyForm">
-  <div class="btn-group btn-group-toggle">
-    <label class="btn-outline-primary btn-circle mr-2" ngbButtonLabel  *ngFor="let day of days">
+<form [formGroup]="weeklyForm" class="my-1">
+    <label for="" class="mr-4 text-black">ON</label>
+    <div class="btn-group btn-group-toggle">
+        <label class="btn-circle mr-3" ngbButtonLabel *ngFor="let day of days">
       <input type="checkbox" [formControlName]="day.toLowerCase()" ngbButton> {{day}}
     </label>
-  </div>
+    </div>
 </form>

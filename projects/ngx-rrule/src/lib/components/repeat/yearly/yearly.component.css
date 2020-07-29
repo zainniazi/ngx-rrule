@@ -1,0 +1,12 @@
+.custom-radio {
+    padding-left: 49px;
+}
+
+span.border {
+    width: 1px;
+    height: 30px;
+    background-color: #EBF1F4;
+    position: absolute;
+    left: 50px;
+    top: 8px;
+}
