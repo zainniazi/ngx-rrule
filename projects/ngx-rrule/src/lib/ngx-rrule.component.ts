@@ -1,67 +1,97 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { NgxRruleService } from './ngx-rrule.service';
-import { computeRRule } from '../lib/util/computeRRule/fromString/computeRRule';
-import * as moment_ from 'moment';
-import { getDateParts } from '../lib/util/common';
+import {
+  Component,
+  forwardRef,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from "@angular/core";
+import {
+  ControlValueAccessor,
+  FormBuilder,
+  FormGroup,
+  NG_VALUE_ACCESSOR,
+} from "@angular/forms";
+import { NgxRruleService } from "./ngx-rrule.service";
+import { computeRRule } from "../lib/util/computeRRule/fromString/computeRRule";
+import { formatDate, getDateParts } from "../lib/util/common";
 
-const moment = moment_;
-import { DATE_TIME_FORMAT } from './util/computeRRule/constant';
 @Component({
-  selector: 'ngx-rrule',
-  templateUrl: './ngx-rrule.component.html',
+  selector: "ngx-rrule",
+  templateUrl: "./ngx-rrule.component.html",
   styles: [],
-  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => NgxRruleComponent), multi: true }]
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => NgxRruleComponent),
+      multi: true,
+    },
+  ],
 })
-export class NgxRruleComponent implements OnInit, ControlValueAccessor {
+export class NgxRruleComponent
+  implements OnInit, OnChanges, ControlValueAccessor {
   @Input() hideStart = false;
   @Input() hideEnd = false;
   @Input() startAt;
   @Input() endAt;
   @Input() frequency;
+  @Input() tz;
   public form: FormGroup;
   private propagateChange;
-  constructor(private formBuilder: FormBuilder,
-    private service: NgxRruleService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private service: NgxRruleService
+  ) {}
 
   ngOnInit() {
     const params: any = {
       start: {},
       repeat: {},
       end: {
-        mode: 'Never'
-      }
+        mode: "Never",
+      },
     };
 
-
     if (this.endAt) {
-      params.end.endAt = getDateParts(this.endAt);
-      params.end.mode = 'On date';
+      params.end = {
+        mode: "On date",
+        onDate: {
+          date: getDateParts(this.endAt),
+        },
+      };
     }
 
     if (this.startAt) {
-      params.start = getDateParts(this.startAt);
+      params.start = {
+        onDate: {
+          date: getDateParts(this.startAt),
+        },
+      };
     }
 
     this.form = this.formBuilder.group(params);
 
-    this.form.valueChanges.subscribe(() => setTimeout(() => {
-      this.onFormChange();
-    }, 100));
+    this.form.valueChanges.subscribe(() =>
+      setTimeout(() => {
+        this.onFormChange();
+      }, 100)
+    );
   }
 
   writeValue = (input: any): void => {
     const config: any = {};
-    const configureFrequency = () => (config.repeat ? config.repeat[0] : 'Yearly');
-    const configureYearly = () => (config.yearly || 'on');
-    const configureMonthly = () => (config.monthly || 'on');
-    const configureEnd = () => (config.end ? config.end[0] : 'Never');
-    const configureHideStart = () => (typeof config.hideStart === 'undefined' ? true : config.hideStart);
+    const configureFrequency = () =>
+      config.repeat ? config.repeat[0] : "Yearly";
+    const configureYearly = () => config.yearly || "on";
+    const configureMonthly = () => config.monthly || "on";
+    const configureEnd = () => (config.end ? config.end[0] : "Never");
+    const configureHideStart = () =>
+      typeof config.hideStart === "undefined" ? true : config.hideStart;
     // const uniqueRruleId = isEmpty(id) ? uniqueId('rrule-') : id;
     const init_data = {
       start: {
         onDate: {
-          date: moment().format(DATE_TIME_FORMAT),
+          date: formatDate(new Date()),
           options: {},
         },
       },
@@ -70,13 +100,13 @@ export class NgxRruleComponent implements OnInit, ControlValueAccessor {
         yearly: {
           mode: configureYearly(),
           on: {
-            month: 'Jan',
+            month: "Jan",
             day: 1,
           },
           onThe: {
-            month: 'Jan',
-            day: 'Monday',
-            which: 'First',
+            month: "Jan",
+            day: "Monday",
+            which: "First",
           },
           options: {
             // modes: config.yearly,
@@ -89,8 +119,8 @@ export class NgxRruleComponent implements OnInit, ControlValueAccessor {
             day: 1,
           },
           onThe: {
-            day: 'Monday',
-            which: 'First',
+            day: "Monday",
+            which: "First",
           },
           options: {
             // modes: config.monthly,
@@ -125,7 +155,7 @@ export class NgxRruleComponent implements OnInit, ControlValueAccessor {
         mode: configureEnd(),
         after: 1,
         onDate: {
-          date: moment().format(DATE_TIME_FORMAT),
+          date: formatDate(new Date()),
           options: {
             // weekStartsOnSunday: config.weekStartsOnSunday,
             // calendarComponent,
@@ -144,17 +174,15 @@ export class NgxRruleComponent implements OnInit, ControlValueAccessor {
       error: null,
     };
 
-
     const data = computeRRule(init_data, input);
     this.form.patchValue(data);
-  }
+  };
 
   registerOnChange(fn: any): void {
     this.propagateChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
-  }
+  registerOnTouched(fn: any): void {}
 
   onFormChange = () => {
     let rRule;
@@ -166,15 +194,24 @@ export class NgxRruleComponent implements OnInit, ControlValueAccessor {
       if (this.hideEnd && !this.endAt) {
         params.end = null;
       }
-      rRule = this.service.computeRRule({ ...params, options: {} });
+      rRule = this.service.computeRRule({
+        ...params,
+        options: { tz: this.tz },
+      });
     } catch (err) {
       console.error(err);
     }
     if (this.propagateChange) {
       this.propagateChange({
         raw: this.form.value,
-        rRule
+        rRule,
       });
     }
+  };
+
+  ngOnChanges(changes: SimpleChanges) {
+    setTimeout(() => {
+      this.onFormChange();
+    }, 10);
   }
 }
