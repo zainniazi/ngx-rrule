@@ -1,80 +1,134 @@
 <form [formGroup]="form">
-    <div class="row mt-2">
-      <div class="form-inline">
-        <div class="form-group col-lg-12">
-          <input type="radio" aria-label="Repeat yearly on" value="on" formControlName="mode">
-          <label class="ml-2">on</label>
-          <div  formGroupName="on">
-            <select formControlName="month" aria-label="Repeat yearly on month" class="form-control"
-                    [attr.disabled]="form.value.mode !== 'on'? '' : null">
-              <option value="Jan">Jan</option>
-              <option value="Feb">Feb</option>
-              <option value="Mar">Mar</option>
-              <option value="Apr">Apr</option>
-              <option value="May">May</option>
-              <option value="Jun">Jun</option>
-              <option value="Jul">Jul</option>
-              <option value="Aug">Aug</option>
-              <option value="Sep">Sep</option>
-              <option value="Oct">Oct</option>
-              <option value="Nov">Nov</option>
-              <option value="Dec">Dec</option>
-            </select>
-            <select formControlName="day" aria-label="Repeat yearly on a day" class="form-control"
-                    [attr.disabled]="form.value.mode !== 'on'? '' : null">
-              <option *ngFor="let val of range(1, 32)" [value]="val.toString()">{{val}}</option>
-            </select>
-          </div>
-
+  <div class="row">
+    <div class="form-inline">
+      <div class="form-group col-lg-12">
+        <div class="custom-control-inline custom-radio mb-2">
+          <input
+            type="radio"
+            formControlName="mode"
+            class="form-control custom-control-input custom-control-inline"
+            id="on"
+            aria-label="Repeat yearly on"
+            value="on"
+          />
+          <span class="border"></span>
+          <label class="custom-control-label" for="on">On The</label>
+        </div>
+        <!-- <input type="radio" aria-label="Repeat yearly on" value="on" formControlName="mode">                <label class="ml-2">on</label> -->
+        <div formGroupName="on">
+          <ng-select
+            formControlName="month"
+            [searchable]="false"
+            [clearable]="false"
+            aria-label="Repeat yearly on month"
+            class="form-control mb-2 mr-3"
+            [readonly]="form.value.mode !== 'on' ? 'true' : null"
+          >
+            <ng-option value="Jan">Jan</ng-option>
+            <ng-option value="Feb">Feb</ng-option>
+            <ng-option value="Mar">Mar</ng-option>
+            <ng-option value="Apr">Apr</ng-option>
+            <ng-option value="May">May</ng-option>
+            <ng-option value="Jun">Jun</ng-option>
+            <ng-option value="Jul">Jul</ng-option>
+            <ng-option value="Aug">Aug</ng-option>
+            <ng-option value="Sep">Sep</ng-option>
+            <ng-option value="Oct">Oct</ng-option>
+            <ng-option value="Nov">Nov</ng-option>
+            <ng-option value="Dec">Dec</ng-option>
+          </ng-select>
+          <ng-select
+            formControlName="day"
+            [searchable]="false"
+            [clearable]="false"
+            aria-label="Repeat yearly on a day"
+            class="form-control mb-2"
+            [readonly]="form.value.mode !== 'on' ? 'true' : null"
+          >
+            <ng-option
+              *ngFor="let val of range(1, 32)"
+              [value]="val.toString()"
+              >{{ val }}</ng-option
+            >
+          </ng-select>
         </div>
       </div>
     </div>
+  </div>
   <div class="row mt-2">
     <div class="form-inline">
       <div class="col-md-12 form-group">
-        <input type="radio" value="on the" formControlName="mode">
-        <label class="ml-2">on the</label>
-        <div formGroupName="onThe">
-        <select formControlName="which" aria-label="Repeat yearly on the which" class="form-control"
-                [attr.disabled]="form.value.mode === 'on'? '' : null">
-          <option value="First">First</option>
-          <option value="Second">Second</option>
-          <option value="Third">Third</option>
-          <option value="Fourth">Fourth</option>
-          <option value="Last">Last</option>
-        </select>
-
-        <select  formControlName="day" aria-label="Repeat yearly on the day" class="form-control"
-                [attr.disabled]="form.value.mode === 'on'? '' : null">
-          <option value="Monday">Monday</option>
-          <option value="Tuesday">Tuesday</option>
-          <option value="Wednesday">Wednesday</option>
-          <option value="Thursday">Thursday</option>
-          <option value="Friday">Friday</option>
-          <option value="Saturday">Saturday</option>
-          <option value="Sunday">Sunday</option>
-          <option value="Day">Day</option>
-          <option value="Weekday">Weekday</option>
-          <option value="Weekend day">Weekend day</option>
-        </select>
+        <div class="custom-control-inline custom-radio mb-1">
+          <input
+            type="radio"
+            formControlName="mode"
+            class="form-control custom-control-input custom-control-inline"
+            id="onThe"
+            aria-label="Repeat yearly on"
+            value="onThe"
+          />
+          <span class="border"></span>
+          <label class="custom-control-label" for="onThe">On The</label>
         </div>
-        <label class="ml-1 mr-1">of</label>
+        <!-- <input type="radio" value="on the" formControlName="mode">                <label class="ml-2">on the</label> -->
         <div formGroupName="onThe">
-        <select  formControlName="month" aria-label="Repeat yearly on the month" class="form-control"
-                [attr.disabled]="form.value.mode === 'on'? '' : null">
-          <option value="Jan">Jan</option>
-          <option value="Feb">Feb</option>
-          <option value="Mar">Mar</option>
-          <option value="Apr">Apr</option>
-          <option value="May">May</option>
-          <option value="Jun">Jun</option>
-          <option value="Jul">Jul</option>
-          <option value="Aug">Aug</option>
-          <option value="Sep">Sep</option>
-          <option value="Oct">Oct</option>
-          <option value="Nov">Nov</option>
-          <option value="Dec">Dec</option>
-        </select>
+          <ng-select
+            formControlName="which"
+            [searchable]="false"
+            [clearable]="false"
+            aria-label="Repeat yearly on the which"
+            class="form-control mb-1 mr-3"
+            [readonly]="form.value.mode === 'on' ? 'true' : null"
+          >
+            <ng-option value="First">First</ng-option>
+            <ng-option value="Second">Second</ng-option>
+            <ng-option value="Third">Third</ng-option>
+            <ng-option value="Fourth">Fourth</ng-option>
+            <ng-option value="Last">Last</ng-option>
+          </ng-select>
+          <ng-select
+            formControlName="day"
+            [searchable]="false"
+            [clearable]="false"
+            aria-label="Repeat yearly on the day"
+            class="form-control mb-1 mr-3"
+            [readonly]="form.value.mode === 'on' ? 'true' : null"
+          >
+            <ng-option value="Monday">Monday</ng-option>
+            <ng-option value="Tuesday">Tuesday</ng-option>
+            <ng-option value="Wednesday">Wednesday</ng-option>
+            <ng-option value="Thursday">Thursday</ng-option>
+            <ng-option value="Friday">Friday</ng-option>
+            <ng-option value="Saturday">Saturday</ng-option>
+            <ng-option value="Sunday">Sunday</ng-option>
+            <ng-option value="Day">Day</ng-option>
+            <ng-option value="Weekday">Weekday</ng-option>
+            <ng-option value="Weekend day">Weekend day</ng-option>
+          </ng-select>
+        </div>
+        <label class="mb-1 mr-3">of</label>
+        <div formGroupName="onThe">
+          <ng-select
+            formControlName="month"
+            [searchable]="false"
+            [clearable]="false"
+            aria-label="Repeat yearly on the month"
+            class="form-control mb-1"
+            [readonly]="form.value.mode === 'on' ? 'true' : null"
+          >
+            <ng-option value="Jan">Jan</ng-option>
+            <ng-option value="Feb">Feb</ng-option>
+            <ng-option value="Mar">Mar</ng-option>
+            <ng-option value="Apr">Apr</ng-option>
+            <ng-option value="May">May</ng-option>
+            <ng-option value="Jun">Jun</ng-option>
+            <ng-option value="Jul">Jul</ng-option>
+            <ng-option value="Aug">Aug</ng-option>
+            <ng-option value="Sep">Sep</ng-option>
+            <ng-option value="Oct">Oct</ng-option>
+            <ng-option value="Nov">Nov</ng-option>
+            <ng-option value="Dec">Dec</ng-option>
+          </ng-select>
         </div>
       </div>
     </div>

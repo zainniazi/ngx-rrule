@@ -6,7 +6,8 @@
     "umdModuleIds": {
       "rrule": "rrule",
       "lodash-es": "lodash-es",
-      "@ng-bootstrap/ng-bootstrap": "@ng-bootstrap/ng-bootstrap"
+      "@ng-select/ng-select": "@ng-select/ng-select",
+      "ngx-bootstrap/datepicker": "ngx-bootstrap/datepicker"
     }
   }
 }

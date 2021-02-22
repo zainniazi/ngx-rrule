@@ -4,7 +4,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormBuilder, FormGroup } from 
 @Component({
   selector: 'ngx-repeat',
   templateUrl: './repeat.component.html',
-  styleUrls: ['./repeat.component.css'],
+  styleUrls: ['./repeat.component.scss'],
   providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => RepeatComponent), multi: true }]
 })
 export class RepeatComponent implements OnInit, ControlValueAccessor {

@@ -11,7 +11,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 @Component({
   selector: "ngx-end",
   templateUrl: "./end.component.html",
-  styleUrls: ["./end.component.css"],
+  styleUrls: ["./end.component.scss"],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -24,6 +24,7 @@ export class EndComponent implements OnInit, ControlValueAccessor {
   @Output() onChange = new EventEmitter();
   public form: FormGroup;
   private propagateChange;
+  placeholder: string;
 
   constructor(private formBuilder: FormBuilder) {}
 

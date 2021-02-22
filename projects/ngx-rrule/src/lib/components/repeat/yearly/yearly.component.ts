@@ -5,7 +5,7 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 @Component({
   selector: 'ngx-yearly',
   templateUrl: './yearly.component.html',
-  styleUrls: ['./yearly.component.css'],
+  styleUrls: ['./yearly.component.scss'],
   providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => YearlyComponent), multi: true}]
 })
 export class YearlyComponent implements OnInit, ControlValueAccessor {

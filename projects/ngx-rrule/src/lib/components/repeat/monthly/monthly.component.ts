@@ -6,7 +6,7 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 @Component({
   selector: 'ngx-monthly',
   templateUrl: './monthly.component.html',
-  styleUrls: ['./monthly.component.css'],
+  styleUrls: ['./monthly.component.scss'],
   providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => MonthlyComponent), multi: true}]
 })
 export class MonthlyComponent implements OnInit, ControlValueAccessor {

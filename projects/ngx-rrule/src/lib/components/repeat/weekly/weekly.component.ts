@@ -6,7 +6,7 @@ import {omit} from 'lodash-es';
 @Component({
   selector: 'ngx-weekly',
   templateUrl: './weekly.component.html',
-  styleUrls: ['./weekly.component.css'],
+  styleUrls: ['./weekly.component.scss'],
   providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => WeeklyComponent), multi: true}]
 })
 export class WeeklyComponent implements OnInit, ControlValueAccessor {
