@@ -4,6 +4,8 @@
   "lib": {
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
+      "rrule": "rrule",
+      "lodash-es": "lodash-es",
       "@ng-bootstrap/ng-bootstrap": "@ng-bootstrap/ng-bootstrap"
     }
   }
