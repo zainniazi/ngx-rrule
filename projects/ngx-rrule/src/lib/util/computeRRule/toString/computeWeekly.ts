@@ -1,13 +1,12 @@
-import RRule from 'rrule';
-import {values} from 'lodash-es';
+import RRule from "rrule";
 
 const computeWeekly = ({ interval, days }) => ({
   freq: RRule.WEEKLY,
   interval,
-  byweekday: values(days).reduce(
-    (activeDays, isDayActive, dayIndex) =>
-      (isDayActive ? [...activeDays, dayIndex] : activeDays),
-    [],
+  byweekday: Object.values(days).reduce(
+    (activeDays: [], isDayActive, dayIndex) =>
+      isDayActive ? [...activeDays, dayIndex] : activeDays,
+    []
   ),
 });
 

@@ -23,7 +23,6 @@
     "@ng-select/ng-select": "^6.1.0",
     "bootstrap": "^4.6.0",
     "core-js": "^3.9.0",
-    "lodash-es": "^4.17.21",
     "moment": "^2.29.1",
     "ngx-bootstrap": "^6.2.0",
     "rrule": "^2.6.8",

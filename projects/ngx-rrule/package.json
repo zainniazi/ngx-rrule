@@ -1,6 +1,6 @@
 {
   "name": "ngx-rrule",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/kumar-muthu/ngx-rrule.git"
@@ -15,11 +15,7 @@
     "@angular/localize": "^11.0.0",
     "ngx-bootstrap": "^6.2.0",
     "@ng-select/ng-select": "^6.1.0",
-    "lodash-es": "^4.17.21",
     "rrule": "^2.6.0"
-  },
-  "devDependencies": {
-    "@types/lodash-es": "^4.17.4"
   },
   "dependencies": {
     "tslib": "^2.0.0"
