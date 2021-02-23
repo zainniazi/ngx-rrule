@@ -6,7 +6,8 @@
     "umdModuleIds": {
       "rrule": "rrule",
       "@ng-select/ng-select": "@ng-select/ng-select",
-      "ngx-bootstrap/datepicker": "ngx-bootstrap/datepicker"
+      "ngx-bootstrap/datepicker": "ngx-bootstrap/datepicker",
+      "ngx-bootstrap/buttons": "ngx-bootstrap/buttons"
     }
   }
 }
