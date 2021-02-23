@@ -8,7 +8,8 @@
   line-height: 1.42857;
   background-color: #ccc;
   color: #fff;
-}
-.btn-circle.active {
-  background-color: #005f86;
+
+  &.active {
+    background-color: #005f86;
+  }
 }

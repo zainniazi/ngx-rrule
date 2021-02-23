@@ -4,6 +4,7 @@ import { NgxRruleComponent } from "./ngx-rrule.component";
 import { StartComponent } from "./components/start/start.component";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
+import { ButtonsModule } from "ngx-bootstrap/buttons";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { EndComponent } from "./components/end/end.component";
 import { RepeatComponent } from "./components/repeat/repeat.component";
@@ -27,6 +28,7 @@ import { YearlyComponent } from "./components/repeat/yearly/yearly.component";
     ReactiveFormsModule,
     NgSelectModule,
     BsDatepickerModule.forRoot(),
+    ButtonsModule.forRoot(),
   ],
   exports: [NgxRruleComponent],
 })
